@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Edit product details in Liv and Gad store">
+    <meta name="author" content="Liv&Gad Store">
+    <title>Edit Product | Liv&Gad</title>
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    {% if messages %}
+    {% for message in messages %}
+    <script>
+        alert("{{ message }}");
+    </script>
+    {% endfor %}
+    {% endif %}
+    <style>
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .form-container .image-section, 
+        .form-container .form-section {
+            flex: 1 1 45%;
+            max-width: 45%;
+            margin: 20px;
+        }
+
+        .form-container .image-section img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            flex: 1;
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .form-group input, 
+        .form-group select {
+            flex: 2;
+            padding: 8px 12px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .action-buttons button, 
+        .action-buttons a {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-transform: uppercase;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <img src="{% static 'images/logo1.png' %}" alt="">
+                <span class="d-none d-lg-block">Liv and Gad Store</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li class="nav-item dropdown pe-3">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="#" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ request.session.name }}</span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>{{ request.session.name }}</h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{% url 'login' %}">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " href="{% url 'dashboard' %}">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Categories</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        {% for category in categories %}
+                        <a href="{% url 'category_related_products' category_name=category.name %}">
+                            <i class="bi bi-circle"></i><span>{{ category.name }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <main id="main" class="main">
+        <section class="section dashboard">
+            <div class="form-container">
+                <!-- Image Section -->
+                <div class="image-section">
+                    <img src="{{ product.img.url }}" alt="{{ product.name }}">
+                </div>
+                
+                <!-- Form Section -->
+                <div class="form-section">
+                    <h5 class="card-title text-center">Edit Product</h5>
+                    <form method="post" action="{% url 'editproduct' product_name=product.name %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="product_name">Product Name:</label>
+                            <input type="text" id="product_name" name="name" value="{{ product.name }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="text" id="price" name="price" value="{{ product.price }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="qty">Quantity:</label>
+                            <input type="text" id="qty" name="qty" value="{{ product.qty }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select id="status" name="status">
+                                <option value="Available" {% if product.status == "Available" %}selected{% endif %}>Available</option>
+                                <option value="Out of Stock" {% if product.status == "Out of Stock" %}selected{% endif %}>Out of Stock</option>
+                            </select>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button type="submit" class="btn btn-primary">Edit Product</button>
+                            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Return to Dashboard</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Living&GadgetStore</span></strong>. All Rights Reserved
+        </div>
+    </footer>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>
