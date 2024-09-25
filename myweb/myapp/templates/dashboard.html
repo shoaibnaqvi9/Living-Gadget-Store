@@ -187,7 +187,7 @@
                                                             width="50"></a></td>
                                                 <td><a href="{% url 'editproduct' product_name=record.name %}"><img src="{% static 'images/edit.png' %}" alt="edit"
                                                             class="e_d_button"></a></td>
-                                                <td><a href=""><img src="{% static 'images/delete.png' %}" alt="delete"
+                                                <td><a href="{% url 'deleteproduct' product_id=record.id %}" onclick="return confirm('Are you sure you want to delete {{ record.name }}?');"><img src="{% static 'images/delete.png' %}" alt="delete"
                                                             class="e_d_button"></a></td>
                                                 <td>{{ record.status }}</td>
                                             </tr>

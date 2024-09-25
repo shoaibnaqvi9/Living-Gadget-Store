@@ -280,3 +280,11 @@ def view_cart(request):
         'category': last_viewed_category,
     }
     return render(request, 'view_cart.html', context)
+
+def deleteproduct(request,product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, f"Product '{product.name}' has been deleted successfully.")
+        return redirect('dashboard')
+    return render(request, 'confirm_delete.html', {'product': product})
