@@ -226,7 +226,7 @@ button:hover .hover-btn {
                             </div>
                             <p class="card-text">Price: Rs.{{ product.price }}</p>
                             {% if product.status == 'Available' %}
-                            <button>
+                            <button><a href="{% url 'add_to_cart' product.id %}">
                                 <div class="default-btn">
                                   <svg viewBox="0 0 24 24" width="20" height="20" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
                                     <circle cx="9" cy="21" r="1"></circle>
@@ -241,6 +241,7 @@ button:hover .hover-btn {
                                   </svg>
                                   <span>Rs.{{ product.price }}</span>
                                 </div>
+                                </a>
                               </button>
                             {% endif %}
                             {% if product.status == 'Out of Stock' %}
