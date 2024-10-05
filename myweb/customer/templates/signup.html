@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Signup for Liv&Gad</title>
+
+    <link rel="icon" href="{% static 'images/logo1.png' %}" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, 'Helvetica', 'Gill Sans MT', sans-serif;
+            background-image: url("{% static 'images/bg_image.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            padding-top: 25px;
+        }
+
+        .card {
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: left;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 0px;
+            background-color: transparent;
+        }
+
+        .card-header-custom {
+            text-align: center;
+            text-transform: uppercase;
+            border: 0px;
+            background-color: transparent;
+            color: white;
+            padding: 5px;
+        }
+
+        .form_border {
+            border: 1px dotted black;
+            padding: 15px;
+        }
+
+        .form-container {
+            padding: 25px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 350px;
+        }
+
+        .custom-card {
+            border: none;
+        }
+
+        .custom-img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .animated-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 20px;
+            margin: 4px 8px;
+            border: 4px solid;
+            border-color: transparent;
+            font-size: 14px;
+            background-color: #2196f3;
+            border-radius: 100px;
+            font-weight: 500;
+            color: white;
+            box-shadow: 0 0 0 2px #2196f3;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button svg {
+            position: absolute;
+            width: 26px;
+            fill: white;
+            z-index: 9;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button .arr-1 {
+            right: 4px;
+        }
+
+        .animated-button .arr-2 {
+            left: -25%;
+        }
+
+
+        .animated-button .text {
+            position: relative;
+            z-index: 1;
+            transform: translateX(-12px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .animated-button:hover {
+            box-shadow: 0 0 0 12px transparent;
+            color: white;
+            border-radius: 12px;
+        }
+    </style>
+    {% if messages %}
+    {% for message in messages %}
+    <script>
+        alert("{{ message }}");
+    </script>
+    {% endfor %}
+    {% endif %}
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="{% static 'images/logo.png' %}" class="custom-img" alt="Logo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-custom">
+                        <h4 class="mb-0">Signup here</h4>
+                    </div>
+                    <div class="form-container" style="padding: 20px;">
+                        <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Enter name here" required>
+                                    <label for="email">Email address</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Enter email here" required>
+                                </div>
+                                <div class="form-row">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Enter password here" required>
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirm_password"
+                                        name="confirm_password" placeholder="Re-enter password here" required>
+                                </div>
+                                <div class="form-row">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address"
+                                        placeholder="Enter address here" required>
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" id="phone" name="phone"
+                                        placeholder="Enter phone here" required>
+                                    <label for="img">Profile Picture</label>
+                                    <input type="file" class="form-control-file" id="img" name="img" required>
+                                </div>
+                            </div>
+                            <div style="text-align: center">
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" class="animated-button">Signup</button>
+                                    <a href="{% url 'login' %}" class="animated-button">
+                                        <span class="text">login</span>
+                                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

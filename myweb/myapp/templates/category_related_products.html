@@ -225,8 +225,6 @@
                             <div class="card-text" style="float: right;">
                                 <p class="card-text">{{ product.status }}</p>
                             </div>
-                            <!-- <p class="card-text">Price: Rs.{{ product.price }}</p> -->
-
                             {% if product.status == 'Available' %}
                             <button>
                                 <a href="{% url 'add_to_cart' product.id %}">

@@ -218,7 +218,6 @@ def editproduct(request,product_name):
 def category_related_products(request,category_name):
     categories = Category.objects.all()
     category = get_object_or_404(Category, name=category_name)
-
     products = Product.objects.filter(category=category)
     context = {
         'category':category,
