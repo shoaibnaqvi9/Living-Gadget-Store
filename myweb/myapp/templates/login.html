@@ -67,6 +67,25 @@
       height: auto;
     }
 
+    .home-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #2196f3;
+      color: white;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #0b79d0;
+      color: white;
+    }
+
     .animated-button {
       position: relative;
       display: flex;
@@ -139,6 +158,8 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
+            <!-- Home Button -->
+            <a href="{% url 'home' %}" class="home-button">Home</a>
             <img src="{% static 'images/logo.png' %}" class="custom-img" alt="Logo" />
           </div>
         </div>

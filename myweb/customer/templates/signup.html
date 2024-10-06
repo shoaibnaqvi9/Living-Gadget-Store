@@ -146,10 +146,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header card-header-custom">
-                        <h4 class="mb-0">Signup here</h4>
+                        <h4 class="mb-0">Signup - Customer</h4>
                     </div>
                     <div class="form-container" style="padding: 20px;">
-                        <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+                        <form method="post" action="{% url 'customer/signup' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
                                 <div class="form-row">
@@ -182,7 +182,7 @@
                             <div style="text-align: center">
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="animated-button">Signup</button>
-                                    <a href="{% url 'login' %}" class="animated-button">
+                                    <a href="{% url 'customer/login' %}" class="animated-button">
                                         <span class="text">login</span>
                                         <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
                                             <path

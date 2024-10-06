@@ -10,6 +10,18 @@ from django.contrib.auth.hashers import make_password
 from .models import User, Category, Product
 from django.conf import settings
 
+def home(request):
+    news_data = fetch_news()
+    categories = Category.objects.all()
+    records = Product.objects.all()
+    context = {
+        'news_data': news_data,
+        'show_product': records,
+        'categories': categories,
+    }
+    return render(request, 'home.html', context)
+
+
 def dashboard(request):
     news_data = fetch_news()
     categories = Category.objects.all()

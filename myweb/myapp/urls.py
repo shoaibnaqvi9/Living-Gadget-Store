@@ -2,12 +2,13 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+app_name = 'admin'
 
 urlpatterns = [
+    path('', views.home, name = 'home'),
     path('dashboard/', views.dashboard, name = 'dashboard'),
-    path('signup/', views.signup, name = 'signup'),
-    path('', views.login, name = 'login'),
-    path('login/', views.login, name = 'login'),
+    path('admin/signup/', views.signup, name = 'signup'),
+    path('admin/login/', views.login, name = 'login'),
     path('logout/', views.logout, name = 'logout'),
     path('forgot_password/', views.forgot_password, name='forgot_password'),
     path('reset_password/<str:reset_token>/', views.reset_password, name='reset_password'),
