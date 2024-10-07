@@ -9,6 +9,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.hashers import make_password
 from .models import User, Category, Product
 from django.conf import settings
+from django.db.models import Q
 
 def home(request):
     news_data = fetch_news()
@@ -299,3 +300,21 @@ def deleteproduct(request,product_id):
         messages.success(request, f"Product '{product.name}' has been deleted successfully.")
         return redirect('dashboard')
     return render(request, 'confirm_delete.html', {'product': product})
+def search(request):
+    query = request.GET.get('q')
+    if query:
+        search_results = Product.objects.filter(
+            Q(name__icontains=query) | 
+            Q(brand__icontains=query) | 
+            Q(category__name__icontains=query)
+        )
+    else:
+        search_results = Product.objects.none()
+    
+    context = {
+        'query': query,
+        'search_results': search_results,
+        'show_product': Product.objects.all(),
+        'news_data': fetch_news(),
+    }
+    return render(request, 'home.html', context)

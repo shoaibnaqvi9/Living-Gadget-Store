@@ -1,13 +1,13 @@
 from django.urls import path
-from . import views
+from customer import views as customer_views
 from django.conf import settings
 from django.conf.urls.static import static
-app_name = 'customer'
+
 urlpatterns = [
-    path('dashboard/', views.dashboard, name = 'dashboard'),
-    path('customer/signup/', views.signup, name = 'customer/signup'),
-    path('customer/login/', views.login, name = 'login'),
-    path('forgot_password/', views.forgot_password, name = 'forgot_password'),
-    path('reset_password/<str:reset_token>/', views.reset_password, name = 'reset_password'),
-    
+    path('customer/dashboard/', customer_views.dashboard, name = 'customer_dashboard'),
+    path('customer/signup/', customer_views.signup, name = 'customer_signup'),
+    path('customer/login/', customer_views.login, name = 'customer_login'),
+    path('logout/', customer_views.logout, name = 'logout'),
+    path('customer/forgot_password/', customer_views.forgot_password, name = 'customer_forgot_password'),
+    path('customer/reset_password/<str:reset_token>/', customer_views.reset_password, name = 'customer_reset_password'),
 ]

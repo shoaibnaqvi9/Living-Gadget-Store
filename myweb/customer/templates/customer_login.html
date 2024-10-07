@@ -149,7 +149,7 @@
             <h4 class="mb-0">Login to your account</h4>
           </div>
           <div class="form-container" style="padding: 20px">
-            <form method="post" action="{% url 'login' %}" enctype="multipart/form-data">
+            <form method="post" action="{% url 'customer_login' %}" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="form-group">
                 <label for="email">Email address</label>
@@ -166,7 +166,7 @@
               <div style="text-align: center">
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="animated-button">Login</button>
-                  <a href="{% url 'signup' %}" class="animated-button">
+                  <a href="{% url 'customer_signup' %}" class="animated-button">
                     <span class="text">Signup</span>
                     <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
                       <path

@@ -5,7 +5,8 @@ from django.core.files.base import ContentFile
 from django.utils.crypto import get_random_string
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
-from .models import Customer,Add_To_Cart
+from .models import Customer
+from myapp.models import Category, Product
 
 def dashboard(request):
     news_data = fetch_news()
@@ -31,10 +32,10 @@ def signup(request):
 
         if not password_regex.match(password):
             messages.error(request, "Password must be at least 8 characters long, include 1 uppercase letter, 1 number, and 1 special character.")
-            return render(request, "signup.html")
+            return render(request, "customer_signup.html")
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
-            return render(request, "signup.html")
+            return render(request, "customer_signup.html")
         user = Customer(name=name, email=email, password=password, address=address, phone=phone)
         user.save()
 
@@ -43,18 +44,18 @@ def signup(request):
             img_extension = img_extension.lower()
             if img_extension not in ['.jpg', '.jpeg', '.png']:
                 messages.error(request, "Image must be in JPG or PNG format.")
-                return render(request, "signup.html")
+                return render(request, "customer_signup.html")
             new_img_name = f"{user.id}_{user.name}{img_extension}"
             img_content = img.read()
             user.image.save(new_img_name, ContentFile(img_content))
             user.save()
         else:
             messages.error(request, "Please upload an image.")
-            return render(request, "signup.html")
+            return render(request, "customer_signup.html")
         messages.success(request, "You have signed up successfully.")
-        return redirect("login")
+        return redirect("customer_login")
     else:
-        return render(request, "signup.html")
+        return render(request, "customer_signup.html")
 
 def login(request):
     if request.method == 'POST':
@@ -71,13 +72,13 @@ def login(request):
             else:
                 msg = 'Invalid Credentials'
                 messages.error(request, msg)
-                return render(request, 'login.html', {'msg': msg})
+                return render(request, 'customer_login.html', {'msg': msg})
     else:
-        return render(request, 'login.html')
+        return render(request, 'customer_login.html')
 
 def logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('customer_login')
 
 def forgot_password(request):
     if request.method == 'POST':
@@ -88,7 +89,7 @@ def forgot_password(request):
             user.reset_token = reset_token
             user.save(update_fields=['reset_token'])
 
-            reset_link = request.build_absolute_uri(f'/applicate/reset_password/{reset_token}/')
+            reset_link = request.build_absolute_uri(f'/customer_reset_password/{reset_token}/')
             try:
                 send_mail(
                     'Password Reset Request',
@@ -99,15 +100,15 @@ def forgot_password(request):
                 )
             except BadHeaderError:
                 msg = 'Invalid header found.'
-                return render(request, 'forgot_password.html', {'msg': msg})
+                return render(request, 'customer_forgot_password.html', {'msg': msg})
 
             msg = 'A password reset link has been sent to your email.'
-            return render(request, 'forgot_password.html', {'msg': msg})
+            return render(request, 'customer_forgot_password.html', {'msg': msg})
         except Customer.DoesNotExist:
             msg = 'No user found with this email address.'
-            return render(request, 'forgot_password.html', {'msg': msg})
+            return render(request, 'customer_forgot_password.html', {'msg': msg})
 
-    return render(request, 'forgot_password.html')
+    return render(request, 'customer_forgot_password.html')
 
 def reset_password(request, reset_token):
     if request.method == 'POST':
@@ -126,9 +127,9 @@ def reset_password(request, reset_token):
         else:
             msg = "Passwords do not match."
 
-        return render(request, 'reset_password.html', {'msg': msg})
+        return render(request, 'customer_reset_password.html', {'msg': msg})
     else:
-        return render(request, 'reset_password.html')
+        return render(request, 'customer_reset_password.html')
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -173,7 +174,7 @@ def view_cart(request):
         'categories': categories,
         'category': last_viewed_category,
     }
-    return render(request, 'view_cart.html', context)
+    return render(request, 'customer_view_cart.html', context)
 
 def deleteproduct(request,product_id):
     product = get_object_or_404(Product, id=product_id)

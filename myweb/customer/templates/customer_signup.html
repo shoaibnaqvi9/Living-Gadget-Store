@@ -18,61 +18,58 @@
         crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: Arial, 'Helvetica', 'Gill Sans MT', sans-serif;
-            background-image: url("{% static 'images/bg_image.jpg' %}");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            padding-top: 25px;
-        }
+      font-family: Arial, "Helvetica", "Gill Sans MT", sans-serif;
+      background-image: url("{% static 'images/bg_image.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding-top: 25px;
+    }
 
-        .card {
-            background-color: transparent;
-            border: none;
-            font-weight: bold;
-            font-size: 18px;
-            text-align: left;
-            flex-direction: column;
-            align-items: center;
-        }
+    .card {
+      background-color: transparent;
+      border: none;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .card-body {
-            padding: 0px;
-            background-color: transparent;
-        }
+    .card-body {
+      padding: 0px;
+      background-color: transparent;
+    }
 
-        .card-header-custom {
-            text-align: center;
-            text-transform: uppercase;
-            border: 0px;
-            background-color: transparent;
-            color: white;
-            padding: 5px;
-        }
+    .card-header-custom {
+      text-align: center;
+      text-transform: uppercase;
+      border: 0px;
+      font-weight: bold;
+      background-color: transparent;
+      color: white;
+      padding: 5px;
+    }
 
-        .form_border {
-            border: 1px dotted black;
-            padding: 15px;
-        }
+    .form-container {
+      padding: 25px;
+      background-color: white;
+      display: flex;
+      border: 1px dotted black;
+      flex-direction: column;
+      align-items: center;
+      width: 350px;
+    }
 
-        .form-container {
-            padding: 25px;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 350px;
-        }
+    .custom-card {
+      border: none;
+    }
 
-        .custom-card {
-            border: none;
-        }
-
-        .custom-img {
-            max-width: 100%;
-            height: auto;
-        }
+    .custom-img {
+      max-width: 100%;
+      height: auto;
+    }
 
         .animated-button {
             position: relative;
@@ -110,7 +107,6 @@
             left: -25%;
         }
 
-
         .animated-button .text {
             position: relative;
             z-index: 1;
@@ -123,6 +119,24 @@
             color: white;
             border-radius: 12px;
         }
+        .home-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background-color: #2196f3;
+      color: white;
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #0b79d0;
+      color: white;
+    }
     </style>
     {% if messages %}
     {% for message in messages %}
@@ -139,7 +153,8 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <img src="{% static 'images/logo.png' %}" class="custom-img" alt="Logo">
+                        <a href="{% url 'home' %}" class="home-button">Home</a>
+                        <img src="{% static 'images/logo.png' %}" class="custom-img" alt="Logo" />
                     </div>
                 </div>
             </div>
@@ -149,7 +164,7 @@
                         <h4 class="mb-0">Signup - Customer</h4>
                     </div>
                     <div class="form-container" style="padding: 20px;">
-                        <form method="post" action="{% url 'customer/signup' %}" enctype="multipart/form-data">
+                        <form method="post" action="{% url 'customer_signup' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
                                 <div class="form-row">
@@ -182,7 +197,7 @@
                             <div style="text-align: center">
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="animated-button">Signup</button>
-                                    <a href="{% url 'customer/login' %}" class="animated-button">
+                                    <a href="{% url 'customer_login' %}" class="animated-button">
                                         <span class="text">login</span>
                                         <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
                                             <path
