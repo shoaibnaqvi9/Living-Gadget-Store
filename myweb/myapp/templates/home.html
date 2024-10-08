@@ -54,7 +54,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
                             {% for category in categories %}
-                                <a class="dropdown-item" href="{% url 'category_related_products' category_name=category.name %}">{{ category.name }}</a>
+                                <a class="dropdown-item" href="{% url 'category_related_products_home' category_name=category.name %}">{{ category.name }}</a>
                             {% endfor %}
                         </div>
                     </li>

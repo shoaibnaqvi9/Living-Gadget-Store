@@ -240,6 +240,18 @@ def category_related_products(request,category_name):
     }
     return render(request, 'category_related_products.html', context)
 
+def category_related_products_home(request,category_name):
+    categories = Category.objects.all()
+    category = get_object_or_404(Category, name=category_name)
+    products = Product.objects.filter(category=category)
+    context = {
+        'category':category,
+        'products': products,
+        'category_name': category_name,
+        'categories': categories,
+    }
+    return render(request, 'category_related_products_home.html', context)
+
 def fetch_news():
     api_key = 'f274f6a51cd94add837984e51a09312e'
     url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={api_key}'
