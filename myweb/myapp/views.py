@@ -322,11 +322,8 @@ def search(request):
         )
     else:
         search_results = Product.objects.none()
-    
     context = {
         'query': query,
         'search_results': search_results,
-        'show_product': Product.objects.all(),
-        'news_data': fetch_news(),
     }
-    return render(request, 'home.html', context)
+    return render(request, 'search.html', context)

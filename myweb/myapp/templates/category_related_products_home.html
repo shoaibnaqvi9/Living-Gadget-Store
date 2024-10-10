@@ -5,252 +5,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ category.name }} | Liv&Gad</title>
-    <meta name="description" content="Category based products in Liv and Gad store">
-    <meta name="author" content="Liv&Gad Store">
+    <title>{{ category.name }} | Living & Gadget Store</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{% static 'images/logo1.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
-    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" ` rel="stylesheet">
-    <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
-
-    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-    {% if messages %}
-    {% for message in messages %}
-    <script>
-        alert("{{ message }}");
-    </script>
-    {% endfor %}
-    {% endif %}
     <style>
-        button {
-            position: relative;
-            overflow: hidden;
-            outline: none;
-            cursor: pointer;
-            border-radius: 0px;
-            border: none;
-            background-color: hsl(255deg 50% 40%);
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-                rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            font-family: "Inter", sans-serif;
+        .e_d_button {
+            width: 16px;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.2s, opacity 0.2s;
         }
 
-        .default-btn {
-            background-image: linear-gradient(90.1deg,
-                    rgba(84, 212, 228, 1) 0.2%,
-                    rgba(68, 36, 164, 1) 99.9%);
+        .e_d_button:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
         }
 
-        .default-btn,
-        .hover-btn {
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 1em 3em;
-            border-radius: 0px;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+        .news-section {
+            margin-top: 30px;
         }
 
-        .hover-btn {
-            position: absolute;
-            inset: 0;
-            font-size: 16px;
-            padding: 1em 3em;
-            text-align: center;
-            background: rgb(26, 35, 126);
-            background: linear-gradient(63deg,
-                    rgba(26, 35, 126, 1) 0%,
-                    rgba(69, 39, 160, 1) 100%);
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-                rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            transform: translate(0%, 100%);
-        }
-
-        .default-btn span {
-            color: hsl(0, 0%, 100%);
-        }
-
-        .hover-btn span {
-            color: hsl(0, 0%, 100%);
-        }
-
-        button:hover .default-btn {
-            transform: translate(0%, -100%);
-        }
-
-        button:hover .hover-btn {
-            transform: translate(0%, 0%);
-        }
-
-        .btn-primary {
-            background-color: #007acc;
-            color: white;
-            border: none;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        .btn-primary:hover {
-            background-color: #336FFF;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            padding: 0.5em;
-            position: relative;
+        .news-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 
 <body>
-    <h1>{{ category.name }}</h1>
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="d-flex align-items-center justify-content-between">
-            <a href="#" class="logo d-flex align-items-center">
-                <img src="{% static 'images/logo1.png' %}" alt="">
-                <span class="d-none d-lg-block">Liv and Gad Store</span>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo1.png' %}" alt="Living & Gadget Store Logo" width="50">
+                Living & Gadget Store
             </a>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
-        </div>
-        <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div>
-    </header>
-    <aside id="sidebar" class="sidebar">
-        <ul class="sidebar-nav" id="sidebar-nav">
-
-            <li class="nav-item">
-                <a class="nav-link " href="{% url 'dashboard' %}">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Categories</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        {% for category in categories %}
-                        <a href="{% url 'category_related_products' category_name=category.name %}">
-                            <i class="bi bi-circle"></i><span>{{ category.name }}</span>
-                        </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        </ul>
-    </aside>
-
-    <main id="main" class="main">
-        <section class="section dashboard">
-            <div class="row">
-                <h2 style="text-align: center; text-decoration: underline;">{{ category.name }}</h2>
-                {% for product in products %}
-                <div class="col-md-3 mb-4">
-                    <div class="card">
-                        <img src="{{ product.img.url }}" class="card-img-top" alt="{{ product.name }}"
-                            style="width: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description }}</p>
-                            <div class="card-text" style="float: right;">
-                                <p class="card-text">{{ product.status }}</p>
-                            </div>
-                            {% if product.status == 'Available' %}
-                            <button>
-                                <a href="{% url 'add_to_cart' product.id %}">
-                                    <div class="default-btn">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#ffffff"
-                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            class="cart-icon">
-                                            <circle cx="9" cy="21" r="1"></circle>
-                                            <circle cx="20" cy="21" r="1"></circle>
-                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                            </path>
-                                        </svg>
-                                        <span>Add to Cart</span>
-                                    </div>
-                                    <div class="hover-btn">
-                                        <svg viewBox="0 0 320 512" width="12.5" height="20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z"
-                                                fill="#ffffff"></path>
-                                        </svg>
-                                        <span>Rs.{{ product.price }}</span>
-                                    </div>
-                                </a>
-                            </button>
-                            {% endif %}
-                            {% if product.status == 'Out of Stock' %}
-                            <button>
-                                <a href="#" class="btn btn-primary disabled">
-                                    <div class="default-btn">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#ffffff"
-                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            class="cart-icon">
-                                            <circle cx="9" cy="21" r="1"></circle>
-                                            <circle cx="20" cy="21" r="1"></circle>
-                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                            </path>
-                                        </svg>
-                                        <span>Add to Cart</span>
-                                    </div>
-                                    <div class="hover-btn">
-                                        <svg viewBox="0 0 320 512" width="12.5" height="20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z"
-                                                fill="#ffffff"></path>
-                                        </svg>
-                                        <span>Rs.{{ product.price }}</span>
-                                    </div>
-                                </a>
-                            </button>
-                            {% endif %}
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Categories
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                            {% for category in categories %}
+                            <a class="dropdown-item" href="{% url 'category_related_products_home' category_name=category.name %}">{{ category.name }}</a>
+                            {% endfor %}
                         </div>
-                    </div>
-                </div>
-                {% endfor %}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'customer_signup' %}">For Order now!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login as Admin</a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container mt-4">
+            <h2>Products in "{{ category.name }}"</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <th scope="row">{{ product.id }}</th>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td><a href="{{ product.img.url }}"><img src="{{ product.img.url }}" alt="{{ product.name }}" width="50"></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </section>
     </main>
+
     <footer class="footer mt-4 bg-light text-center">
         <div class="container">
             <p>&copy; 2024 Living & Gadget Store. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9VbXGA4BeA6a5WJ0AMtnHKMy1SG6bNf2kz9zg" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

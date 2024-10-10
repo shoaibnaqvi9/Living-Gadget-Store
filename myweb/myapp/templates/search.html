@@ -57,7 +57,8 @@
                         <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
                             {% for category in categories %}
                             <a class="dropdown-item"
-                                href="{% url 'category_related_products_home' category_name=category.name %}">{{ category.name }}</a>
+                                href="{% url 'category_related_products_home' category_name=category.name %}">{{
+                                category.name }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -77,29 +78,6 @@
         </nav>
     </header>
     <main>
-
-        <section class="recent-products">
-            <div class="container mt-4">
-                <h2>Recent Products</h2>
-                <div class="row">
-                    {% for record in show_product %}
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="{{ record.img.url }}" alt="{{ record.name }}"
-                                style="height: 200px; object-fit: cover;">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ record.name }}</h5>
-                                <p class="card-text">Brand: {{ record.brand }}</p>
-                                <p class="card-text">Price: ${{ record.price }}</p>
-                                <a href="{% url 'customer_login' %}" class="btn btn-primary">Add to Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </section>
-
         {% if query %}
         <section class="search-results container mt-4">
             <h2>Search Results for "{{ query }}"</h2>
