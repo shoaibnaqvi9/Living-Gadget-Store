@@ -8,16 +8,11 @@
     <title>{{ category.name }} | Liv&Gad</title>
     <meta name="description" content="Category based products in Liv and Gad store">
     <meta name="author" content="Liv&Gad Store">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{% static 'images/logo1.png' %}" rel="icon">
     <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
@@ -25,7 +20,6 @@
     <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
-
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
     {% if messages %}
     {% for message in messages %}
@@ -35,63 +29,54 @@
     {% endfor %}
     {% endif %}
     <style>
-        button {
-            position: relative;
-            overflow: hidden;
-            outline: none;
-            cursor: pointer;
-            border-radius: 0px;
-            border: none;
-            background-color: hsl(255deg 50% 40%);
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-                rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-            font-family: "Inter", sans-serif;
-        }
-
-        .default-btn {
-            background-image: linear-gradient(90.1deg,
-                    rgba(84, 212, 228, 1) 0.2%,
-                    rgba(68, 36, 164, 1) 99.9%);
-        }
+        .button {
+    position: relative;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    border: none;
+    background: linear-gradient(63deg, rgba(255, 75, 75, 1) 0%, rgba(255, 200, 55, 1) 100%);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+    padding: 0.6em;
+}
 
         .default-btn,
         .hover-btn {
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 1em 3em;
-            border-radius: 0px;
-            font-size: 14px;
-            font-weight: 500;
+            justify-content: center;
+            gap: 0.5em;
+            padding: 0.45em;
+            border-radius: 0;
+            font-size: 0.8rem;
+            font-weight: 300;
+            font-family: "Inter", sans-serif;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        .default-btn {
+            background-image: linear-gradient(90.1deg, rgba(255, 75, 75, 1) 0%, rgba(255, 200, 55, 1) 45.9%);
         }
 
         .hover-btn {
             position: absolute;
             inset: 0;
-            font-size: 16px;
-            padding: 1em 3em;
-            text-align: center;
-            background: rgb(26, 35, 126);
-            background: linear-gradient(63deg,
-                    rgba(26, 35, 126, 1) 0%,
-                    rgba(69, 39, 160, 1) 100%);
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-                rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            font-size: 1rem;
+            background: linear-gradient(63deg, rgba(255, 75, 75, 1) 0%, rgba(255, 200, 55, 1) 100%);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
             transform: translate(0%, 100%);
-        }
-
-        .default-btn span {
-            color: hsl(0, 0%, 100%);
-        }
-
-        .hover-btn span {
-            color: hsl(0, 0%, 100%);
+            text-align: center;
+            width: 100%;
+            /* Button scales with content */
         }
 
         button:hover .default-btn {
@@ -100,6 +85,11 @@
 
         button:hover .hover-btn {
             transform: translate(0%, 0%);
+        }
+
+        .default-btn span,
+        .hover-btn span {
+            color: white;
         }
 
         .btn-primary {
@@ -222,11 +212,12 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.description }}</p>
+
+                            {% if product.status == 'Available' %}
                             <div class="card-text" style="float: right;">
                                 <p class="card-text">{{ product.status }}</p>
                             </div>
-                            {% if product.status == 'Available' %}
-                            <button>
+                            <button class="button">
                                 <a href="{% url 'add_to_cart' product.id %}">
                                     <div class="default-btn">
                                         <svg viewBox="0 0 24 24" width="20" height="20" stroke="#ffffff"
@@ -252,30 +243,7 @@
                             </button>
                             {% endif %}
                             {% if product.status == 'Out of Stock' %}
-                            <button>
-                                <a href="#" class="btn btn-primary disabled">
-                                    <div class="default-btn">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#ffffff"
-                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            class="cart-icon">
-                                            <circle cx="9" cy="21" r="1"></circle>
-                                            <circle cx="20" cy="21" r="1"></circle>
-                                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
-                                            </path>
-                                        </svg>
-                                        <span>Add to Cart</span>
-                                    </div>
-                                    <div class="hover-btn">
-                                        <svg viewBox="0 0 320 512" width="12.5" height="20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z"
-                                                fill="#ffffff"></path>
-                                        </svg>
-                                        <span>Rs.{{ product.price }}</span>
-                                    </div>
-                                </a>
-                            </button>
+                            <p class="text-danger" style="text-align: center;">Out of Stock</p>
                             {% endif %}
 
                         </div>
